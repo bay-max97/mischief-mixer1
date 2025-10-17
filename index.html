@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Midnight Mischief Mixer — Host</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- QR Code lib -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database-compat.js"></script>
+</head>
+<body class="host">
+  <header class="topbar">
+    <div class="brand">🍇 Midnight Mischief Mixer</div>
+    <div class="lang">
+      <label for="langSel">Language:</label>
+      <select id="langSel">
+        <option value="en">English</option>
+        <option value="sv">Svenska</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="hostSetup" class="card">
+      <h1 data-i18n="host_create_room">Create a Room</h1>
+      <button id="createRoomBtn" class="btn primary" data-i18n="btn_create_room">Create Room</button>
+
+      <div id="roomInfo" class="hidden">
+        <p><strong data-i18n="label_room_code">Room Code:</strong> <span id="roomCode">—</span></p>
+        <p class="small" data-i18n="hint_share_qr">Share this QR / link so players can join from their phones:</p>
+        <div id="qr"></div>
+        <p class="small">
+          <span data-i18n="label_join_link">Join link:</span>
+          <a id="joinLink" href="#" target="_blank" rel="noopener">—</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="lobby" class="card hidden">
+      <h2 data-i18n="title_lobby">Lobby</h2>
+      <ul id="playersList" class="pill-list"></ul>
+      <div class="row">
+        <button id="startBtn" class="btn accent" data-i18n="btn_start_game">Start Game</button>
+        <button id="clearPlayersBtn" class="btn ghost" data-i18n="btn_clear_players">Clear Players</button>
+      </div>
+    </section>
+
+    <section id="game" class="card hidden">
+      <h2 data-i18n="title_game">Game</h2>
+      <div class="current">
+        <div class="label" data-i18n="label_current_player">Current Player</div>
+        <div id="currentPlayer" class="big"></div>
+      </div>
+      <div class="challenge">
+        <div class="label" data-i18n="label_punishment">Punishment</div>
+        <div id="currentPunishment" class="big"></div>
+        <div id="roundsNote" class="note"></div>
+      </div>
+      <div class="row">
+        <button id="nextBtn" class="btn primary" data-i18n="btn_next">Next</button>
+        <button id="toggleActiveBtn" class="btn ghost" data-i18n="btn_toggle_active">Toggle Active</button>
+        <button id="endBtn" class="btn danger" data-i18n="btn_end">End</button>
+      </div>
+
+      <details class="history">
+        <summary data-i18n="summary_history">History</summary>
+        <ol id="historyList"></ol>
+      </details>
+    </section>
+
+    <section class="card info">
+      <p class="tiny">
+        <span data-i18n="disclaimer">Please drink responsibly. You can run a zero-alcohol variant by swapping “drink” tasks.</span>
+      </p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    window.MMM_INIT && window.MMM_INIT('host');
+  </script>
+</body>
+</html>

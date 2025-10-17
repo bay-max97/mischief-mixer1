@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Join — Midnight Mischief Mixer</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database-compat.js"></script>
+</head>
+<body class="join">
+  <header class="topbar">
+    <div class="brand">🍇 MMM</div>
+    <div class="lang">
+      <label for="langSel">Language:</label>
+      <select id="langSel">
+        <option value="en">English</option>
+        <option value="sv">Svenska</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1 data-i18n="join_title">Join a Room</h1>
+      <label data-i18n="join_room_code">Room Code</label>
+      <input id="roomCodeInput" class="input" placeholder="e.g. 4F7KQ2"/>
+
+      <label data-i18n="join_your_name">Your name</label>
+      <input id="playerNameInput" class="input" placeholder="Max"/>
+
+      <button id="joinBtn" class="btn primary" data-i18n="btn_join">Join</button>
+      <p class="small muted" id="joinMsg"></p>
+    </section>
+
+    <section id="joinedCard" class="card hidden">
+      <h2 data-i18n="joined_heading">You’re in! 🎉</h2>
+      <p class="small" data-i18n="joined_wait">Wait for the host to start the game.</p>
+      <div class="pill" id="youName">—</div>
+      <button id="toggleActiveBtn" class="btn ghost" data-i18n="btn_toggle_active">Toggle Active</button>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    window.MMM_INIT && window.MMM_INIT('join');
+  </script>
+</body>
+</html>
